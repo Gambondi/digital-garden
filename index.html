@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Digital Garden</title>
+  <title>Matthew Moturi Digital Garden</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
   <style>
     body {
@@ -93,13 +93,13 @@
     
     
     
-  	.album-container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    .album-container {
+      margin-bottom: 40px;
+    }
+
+    .memorization-info {
+      margin-top: 10px;
+      color: #E94560; /* Coral text */
     }
 
     .track-list {
@@ -139,6 +139,7 @@
 
   <div id="album1" class="album-container">
      <h1>Good Kid Maad City</h1>
+     <div id="album-gkmc-memorization" class="memorization-info"></div>
     <div class="track-list">
       <div class="track">
         <h2>Money Trees</h2>
@@ -147,10 +148,16 @@
         <h2>Poetic Justice</h2>
       </div>
       <div class="track">
-        <h2></h2>
+        <h2>Real</h2>
       </div>
       <div class="track">
-        <h2></h2>
+        <h2>Swimming Pools</h2>
+      </div>
+       <div class="track">
+        <h2>Bitch Dont Kill My Vibe</h2>
+      </div>
+       <div class="track">
+        <h2>Backseat Freestyle</h2>
       </div>
       <!-- Add more tracks as needed -->
     </div>
@@ -158,18 +165,26 @@
 
   <div id="album2" class="album-container">
     <h1>To Pimp A Butterfly</h1>
+     <div id="album-tpab-memorization" class="memorization-info"></div>
     <div class="track-list">
       <div class="track">
-        <h2>Best Rapper Under 25</h2>
+        <h2>King Kunta</h2>
       </div>
       <div class="track">
-        <h2>Track 2: Example Track</h2>
+        <h2>i</h2>
       </div>
       <div class="track">
-        <h2>Track 3: Example Track</h2>
+        <h2>u</h2>
       </div>
       <div class="track">
-        <h2>Track 4: Example Track</h2>
+        <h2>Alright</h2>
+      </div>
+      
+       <div class="track">
+        <h2>These Walls</h2>
+      </div>
+       <div class="track">
+        <h2>Complexion</h2>
       </div>
       <!-- Add more tracks as needed -->
     </div>
@@ -178,36 +193,42 @@
 
   <div id="album3" class="album-container">
   <h1>DAMN</h1>
+  <div id="album-damn-memorization" class="memorization-info"></div>
     <div class="track-list">
       <div class="track">
-        <h2>Best Rapper Under 25</h2>
+        <h2>Feel</h2>
       </div>
       <div class="track">
-        <h2>Track 2: Example Track</h2>
+        <h2>Humble</h2>
       </div>
       <div class="track">
-        <h2>Track 3: Example Track</h2>
+        <h2>DNA</h2>
       </div>
       <div class="track">
-        <h2>Track 4: Example Track</h2>
+        <h2>Lust</h2>
       </div>
+      
       <!-- Add more tracks as needed -->
     </div>
   </div>
   <div id="album4" class="album-container">
     <h1>Mr Morale and the Big Steppers</h1>
+    <div id="album-mmbs-memorization" class="memorization-info"></div>
     <div class="track-list">
       <div class="track">
-        <h2>Best Rapper Under 25</h2>
+        <h2>Die Hard</h2>
       </div>
       <div class="track">
-        <h2>Track 2: Example Track</h2>
+        <h2>Count me Out</h2>
       </div>
       <div class="track">
-        <h2>Track 3: Example Track</h2>
+        <h2>The Heart Part 5</h2>
       </div>
       <div class="track">
-        <h2>Track 4: Example Track</h2>
+        <h2>Mirror</h2>
+      </div>
+      <div class="track">
+        <h2>N95</h2>
       </div>
       <!-- Add more tracks as needed -->
     </div>
@@ -241,54 +262,64 @@
     });
   </script>
 </body>
-  
-   <script>
+  <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const startButton = document.getElementById('start-button');
-      const marqueeContainer = document.getElementById('marquee-container');
-      const albumPages = document.getElementById('album-pages');
-      const marqueeLinks = document.querySelectorAll('.marquee-link');
+      const startButton = document.querySelector('.start-button');
+      const marqueeLinks = document.querySelectorAll('.marquee-container a');
 
       function scrollToElement(element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
 
-      function showMarquee() {
-        marqueeContainer.style.display = 'block';
-        albumPages.style.display = 'none';
-        scrollToElement(marqueeContainer);
+      function updateMemorizationInfo(albumId, memorizedCount, totalCount) {
+        const memorizationInfo = document.getElementById(albumId + '-memorization');
+
+        if (memorizationInfo) {
+          const comparisonText = `As of 12/7/2023, I've memorized ${memorizedCount} out of ${totalCount} songs on this album.`;
+          memorizationInfo.textContent = comparisonText;
+        }
       }
 
-      function showAlbum(albumData) {
-        albumPages.innerHTML = albumData;
-        marqueeContainer.style.display = 'none';
-        albumPages.style.display = 'block';
-        scrollToElement(albumPages);
-      }
+      // Replace with your actual memorized and total song counts for each album
+      const memorizedSongs = {
+        'album-gkmc': 6,
+        'album-tpab': 6,
+        'album-damn': 4,
+        'album-mmbs': 5,
+        // Add more albums as needed
+      };
+
+      const totalSongs = {
+        'album-gkmc': 12,
+        'album-tpab': 16,
+        'album-damn': 14,
+        'album-mmbs': 19,
+        // Add more albums as needed
+      };
 
       startButton.addEventListener('click', function (event) {
         event.preventDefault();
-        showMarquee();
+        const mainContent = document.getElementById('main-content');
+        scrollToElement(mainContent);
       });
 
       marqueeLinks.forEach(function (link) {
         link.addEventListener('click', function (event) {
           event.preventDefault();
-          // Simulating loading album data dynamically
-          const albumData = getAlbumData(link.getAttribute('data-album'));
-          showAlbum(albumData);
+          const targetAlbum = document.getElementById(link.getAttribute('href').substring(1));
+          scrollToElement(targetAlbum);
         });
       });
 
-      // Simulating loading album data dynamically
-      function getAlbumData(album) {
-        // Replace this with the actual lyrics for each album
-        return `<h1>Album Title: ${album}</h1><p>Lyrics for the ${album} album</p>`;
-      }
+
+      updateMemorizationInfo('album-gkmc', memorizedSongs['album-gkmc'], totalSongs['album-gkmc']);
+      updateMemorizationInfo('album-tpab', memorizedSongs['album-tpab'], totalSongs['album-tpab']);
+      updateMemorizationInfo('album-damn', memorizedSongs['album-damn'], totalSongs['album-damn']);
+      updateMemorizationInfo('album-mmbs', memorizedSongs['album-mmbs'], totalSongs['album-mmbs']);
+     
     });
   </script>
 </body>
 
 </html>
-
 
