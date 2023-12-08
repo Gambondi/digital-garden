@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,29 +18,36 @@
     
     
     .marquee-container-container {
-      max-width: 800px;
+      max-width: 500px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 10px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background: rgba(255, 255, 255, 0.8);
-      margin-bottom: 20px;
+      margin-bottom: 600px;
     }
     
     .marquee-container {
       width: 100%;
-      height: 150px;
+      height: 120px;
       overflow-x: auto;
       white-space: nowrap;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
 
     .marquee-container img {
-      width: 120px;
+      width: 100px;
       height: auto;
-      margin-right: 10px;
+      margin-right: 30px;
+      animation: marqueeAnimation 20s linear infinite;
     }
 
+@keyframes marqueeAnimation {
+  0% {
+    transform: translateX(100%);
+
+  }
+}
 
     .container {
       max-width: 800px;
@@ -94,7 +100,7 @@
     
     
     .album-container {
-      margin-bottom: 40px;
+      margin-bottom: 500px;
     }
 
     .memorization-info {
@@ -122,11 +128,11 @@
 <body>
   
  <div id="landing" class="landing-page">
-    <h1>Kendrick Lamar Lyrics I've memorized</h1>
+    <h1>Kendrick Lamar Songs I've memorized</h1>
     <a href="#main-content" class="start-button">Click to Start</a> 
   </div>
   
-  <div id="marquee-container" class="marquee-container-container" style="display: none;">
+  <div id="marquee-container" class="marquee-container-container" style="display:">
     <div class="marquee-container">
       <a href="album1"><img src="gkmc-kendrick.jpeg" alt="good kid maad city"></a>
       <a href="album2"><img src="tpab-kendrick.jpeg" alt="to pimp a butterfly"></a>
@@ -260,9 +266,7 @@
         });
       });
     });
-  </script>
-</body>
-  <script>
+    
     document.addEventListener('DOMContentLoaded', function () {
       const startButton = document.querySelector('.start-button');
       const marqueeLinks = document.querySelectorAll('.marquee-container a');
@@ -319,7 +323,7 @@
      
     });
   </script>
-</body>
+  </body>
 
 </html>
 
